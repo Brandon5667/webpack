@@ -20,20 +20,27 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
+        title: 'J.A.T.E'
       }),
 
-      new GenerateSW(),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
       new WebpackPwaManifest({
-        name: 'cautious meme',
+        name: 'J.A.T.E',
         short_name: 'CM',
         description: 'My meme',
         background_color: '#ffffff',
         crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+        theme_color: '#225ca3',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
-            src: path.resolve('./client/src/favicon.ico'),
+            src: path.resolve('/src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('icon', )  // multiple sizes
+            destination: path.join('assets', 'icons')  // multiple sizes
           },
 
         ]
